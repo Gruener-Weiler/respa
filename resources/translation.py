@@ -43,7 +43,7 @@ class ResourceImageTranslationOptions(TranslationOptions):
 @register(Purpose)
 class PurposeTranslationOptions(TranslationOptions):
     fields = ('name',)
-    required_languages = ('fi', 'en')
+    required_languages = ('en', 'de')
 
 
 @register(Equipment)
@@ -70,20 +70,24 @@ class TermsOfUserTranslationOptions(TranslationOptions):
 class AccessibilityViewpointTranslationOptions(TranslationOptions):
     fields = ('name',)
 
+
 @register(ReservationHomeMunicipalityField)
 class ReservationHomeMunicipalityFieldTranslationOptions(TranslationOptions):
     fields = ('name',)
-    required_languages = ('fi', 'en', 'sv')
+    required_languages = ('en', 'de')
+
 
 @register(UniversalFormFieldType)
 class UniversalFormFieldTranslationOptions(TranslationOptions):
     pass
 
+
 @register(ResourceUniversalField)
 class ResourceUniversalFieldTranslationOptions(TranslationOptions):
     fields = ('description', 'label')
 
+
 @register(ResourceUniversalFormOption)
 class ResourceUniversalFormOptionTranslationOptions(TranslationOptions):
     fields = ('text', )
-    required_languages = ('fi', 'en', 'sv', )
+    required_languages = ('en', 'de')

@@ -309,12 +309,11 @@ TEST_PERFORMANCE = False
 
 LANGUAGE_CODE = 'en'
 LANGUAGES = (
-    ('fi', _('Finnish')),
     ('en', _('English')),
-    ('sv', _('Swedish'))
+    ('de', _('German')),
 )
 
-TIME_ZONE = 'Europe/Helsinki'
+TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 
@@ -326,13 +325,12 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-MODELTRANSLATION_FALLBACK_LANGUAGES = ('fi', 'en', 'sv')
-MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'fi'
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('en', 'de')
+MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'en'
 PARLER_LANGUAGES = {
     SITE_ID: (
-        {'code': 'fi'},
         {'code': 'en'},
-        {'code': 'sv'},
+        {'code': 'de'},
     ),
 }
 
