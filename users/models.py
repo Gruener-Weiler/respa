@@ -7,6 +7,7 @@ from django.contrib import admin, messages
 from resources.models import Resource
 import datetime
 
+
 class User(AbstractUser):
     first_name = models.CharField(verbose_name=_('First name'), max_length=100, null=True, blank=True)
     last_name = models.CharField(verbose_name=_('Last name'), max_length=100, null=True, blank=True)
@@ -39,7 +40,7 @@ class User(AbstractUser):
             "Designates whether the user is a General Administrator "
             "with special permissions to many objects within Respa. "
             "This is almost as powerful as superuser."))
-    
+
     @property
     def is_strong_auth(self):
         return self.amr in settings.STRONG_AUTH_CLAIMS
@@ -49,8 +50,6 @@ class User(AbstractUser):
         if display_name:
             return f'{display_name} ({self.email})'
         return str('%s %s' % (self.username, f'({self.email})' if self.email else '')).strip()
-
-
 
     class Meta:
         ordering = ('id',)
@@ -70,7 +69,9 @@ class User(AbstractUser):
         return settings.LANGUAGES[0][0]
 
     def get_user_age(self):
-        return int((datetime.date.today() - datetime.datetime.strptime(str(self.birthdate), '%Y-%m-%d').date()).days / 365.25)
+        return int(
+            (datetime.date.today() - datetime.datetime.strptime(str(self.birthdate), '%Y-%m-%d').date()).days / 365.25
+        )
 
     def has_outlook_link(self):
         return getattr(self, 'outlookcalendarlink', False)

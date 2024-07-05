@@ -30,3 +30,4 @@ env*
 static/*
 .python-version
 docker-compose.env
+.DS_Store

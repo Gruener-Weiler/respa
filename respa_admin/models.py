@@ -13,7 +13,6 @@ class ChoiceArrayField(ArrayField):
         self.override_choices = kwargs.pop('override_choices', None)
         super(ChoiceArrayField, self).__init__(*args, **kwargs)
 
-
     def formfield(self, **kwargs):
         override_choices = self.override_choices() if self.override_choices else self.base_field.choices or self.base_field.choices
         return super(ArrayField, self).formfield(**{
@@ -26,13 +25,14 @@ class ChoiceArrayField(ArrayField):
         if hasattr(self, 'override_choices'):
             return self.validate_override_choices(value, model_instance)
         return super().validate(value, model_instance)
-    
+
     def validate_override_choices(self, values, model_instance):
         allowed_choices = [lang for lang, __ in self.override_choices()]
         for value in values:
             if value in allowed_choices:
                 continue
             return super().validate(values, model_instance)
+
 
 class DisabledFieldsSet(AutoIdentifiedModel):
     name = models.CharField(verbose_name=_('Name'), max_length=255, null=False, blank=False)
@@ -54,7 +54,6 @@ class DisabledFieldsSet(AutoIdentifiedModel):
     class Meta:
         verbose_name = _('disabled field set')
         verbose_name_plural = _('disabled fields set')
-
 
     def __str__(self):
         return self.name

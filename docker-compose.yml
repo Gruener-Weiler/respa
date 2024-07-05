@@ -19,7 +19,7 @@ services:
     volumes:
       - db_respa_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - 5432:5432
     env_file:
       - respa/.env
 

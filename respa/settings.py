@@ -39,22 +39,22 @@ env = environ.Env(
     MAIL_MAILGUN_API=(str, ''),
     USE_DJANGO_DEFAULT_EMAIL=(bool, False),
     RESPA_IMAGE_BASE_URL=(str, ''),
-    ACCESSIBILITY_API_BASE_URL=(str, 'https://asiointi.hel.fi/kapaesteettomyys/'),
+    ACCESSIBILITY_API_BASE_URL=(str, ''),
     ACCESSIBILITY_API_SYSTEM_ID=(str, ''),
     ACCESSIBILITY_API_SECRET=(str, ''),
     RESPA_ADMIN_INSTRUCTIONS_URL=(str, ''),
     RESPA_ADMIN_SUPPORT_EMAIL=(str, ''),
     RESPA_ADMIN_VIEW_RESOURCE_URL=(str, ''),
     RESPA_ADMIN_VIEW_UNIT_URL=(str, ''),
-    RESPA_ERROR_EMAIL=(str,''),
+    RESPA_ERROR_EMAIL=(str, ''),
     RESPA_ADMIN_LOGO=(str, ''),
     RESPA_ADMIN_KORO_STYLE=(str, ''),
     RESPA_PAYMENTS_ENABLED=(bool, False),
     RESPA_PAYMENTS_PROVIDER_CLASS=(str, ''),
     RESPA_PAYMENTS_PAYMENT_WAITING_TIME=(int, 15),
     RESPA_PAYMENTS_PAYMENT_REQUESTED_WAITING_TIME=(int, 24),
-    RESPA_ADMIN_LOGOUT_REDIRECT_URL=(str, 'https://hel.fi'),
-    DJANGO_ADMIN_LOGOUT_REDIRECT_URL=(str, 'https://hel.fi'),
+    RESPA_ADMIN_LOGOUT_REDIRECT_URL=(str, ''),
+    DJANGO_ADMIN_LOGOUT_REDIRECT_URL=(str, ''),
     TUNNISTAMO_BASE_URL=(str, ''),
     SOCIAL_AUTH_TUNNISTAMO_KEY=(str, ''),
     SOCIAL_AUTH_TUNNISTAMO_SECRET=(str, ''),
@@ -68,18 +68,18 @@ env = environ.Env(
     GSM_NOTIFICATION_ADDRESS=(str, ''),
     OUTLOOK_EMAIL_DOMAIN=(str, ''),
     OUTLOOK_POLLING_RATE=(float, 5.0),
-    HELUSERS_PROVIDER=(str, 'helusers.providers.helsinki'),
-    HELUSERS_SOCIALACCOUNT_ADAPTER=(str, 'helusers.adapter.SocialAccountAdapter'),
-    AUTHENTICATION_CLASSES=(list, ['respa.providers.turku_oidc.jwt.JWTAuthentication']),
-    HELUSERS_AUTHENTICATION_BACKEND=(str, 'helusers.tunnistamo_oidc.TunnistamoOIDCAuth'),
+    HELUSERS_PROVIDER=(str, ''),
+    HELUSERS_SOCIALACCOUNT_ADAPTER=(str, ''),
+    AUTHENTICATION_CLASSES=(list, []),
+    HELUSERS_AUTHENTICATION_BACKEND=(str, ''),
     USE_SWAGGER_OPENAPI_VIEW=(bool, False),
     USE_RESPA_EXCHANGE=(bool, False),
     EMAIL_HOST=(str, ''),
     MACHINE_TO_MACHINE_AUTH_ENABLED=(bool, False),
     JWT_AUTH_HEADER_PREFIX=(str, "JWT"),
-    JWT_LEEWAY=(int, 30), # seconds
-    JWT_LIFETIME=(int, 900), # generated jwt token expires after this many seconds
-    JWT_PAYLOAD_HANDLER=(str, 'respa.machine_to_machine_auth.utils.jwt_payload_handler'), # generates jwt token payload
+    JWT_LEEWAY=(int, 30),  # seconds
+    JWT_LIFETIME=(int, 900),  # generated jwt token expires after this many seconds
+    JWT_PAYLOAD_HANDLER=(str, 'respa.machine_to_machine_auth.utils.jwt_payload_handler'),  # generates jwt token payload
     ENABLE_RESOURCE_TOKEN_AUTH=(bool, False),
     DISABLE_SERVER_SIDE_CURSORS=(bool, False),
     O365_CLIENT_ID=(str, ''),
@@ -98,8 +98,8 @@ env = environ.Env(
     TIMMI_API_URL=(str, ''),
     TIMMI_ADMIN_ID=(int, 0),
     TIMMI_TIMEOUT=(int, 60),
-    TIMMI_USERNAME=(str, ''), #base64 encoded username
-    TIMMI_PASSWORD=(str, ''), #base64 encoded password
+    TIMMI_USERNAME=(str, ''),  # base64 encoded username
+    TIMMI_PASSWORD=(str, ''),  # base64 encoded password
     STRONG_AUTH_CLAIMS=(tuple, ()),
     DEFAULT_DISABLED_FIELDS_SET_ID=(int, 0),
     QUALITYTOOL_USERNAME=(str, ''),
@@ -215,7 +215,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'helusers.providers.helsinki',
+    # 'helusers.providers.helsinki',
     'respa.providers.turku_oidc',
     'munigeo',
     'taggit',
@@ -292,7 +292,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'helusers.context_processors.settings',
+                # 'helusers.context_processors.settings',
                 'django.template.context_processors.i18n',
             ],
         },
@@ -307,7 +307,7 @@ TEST_PERFORMANCE = False
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'fi'
+LANGUAGE_CODE = 'en'
 LANGUAGES = (
     ('fi', _('Finnish')),
     ('en', _('English')),
@@ -353,12 +353,12 @@ CORS_ORIGIN_ALLOW_ALL = True
 #
 AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = (
-    env('HELUSERS_AUTHENTICATION_BACKEND'),
+    # env('HELUSERS_AUTHENTICATION_BACKEND'),
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
     'guardian.backends.ObjectPermissionBackend',
 )
-SOCIAL_AUTH_TUNNISTAMO_AUTH_EXTRA_ARGUMENTS = {'ui_locales': 'fi'}
+SOCIAL_AUTH_TUNNISTAMO_AUTH_EXTRA_ARGUMENTS = {'ui_locales': 'en'}
 SOCIALACCOUNT_PROVIDERS = {
     'helsinki': {
         'VERIFIED_EMAIL': True
